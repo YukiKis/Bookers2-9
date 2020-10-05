@@ -1,9 +1,9 @@
 <section class="user-edit">
-  <% if current_user.errors.any? %>
+  <% if @user.errors.any? %>
     <div class="error_explanation">
       <h3><%= pluralize(current_user.errors.count, "error") %> prohibited from being saved</h3>
       <ul>
-        <% current_user.errors.full_messages.each do |m| %>
+        <% @user.errors.full_messages.each do |m| %>
           <li><%= m %></li>
         <% end %>
       </ul>
@@ -12,7 +12,7 @@
   
   <div class="col-xs-4">
     <h3>User info</h3>
-    <%= form_with model: current_user, local: true do |f| %>
+    <%= form_with model: @user, local: true do |f| %>
       <%= f.label :name%>
       <%= f.text_field :name %><br>
 

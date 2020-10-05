@@ -1,0 +1,11 @@
+<table class="table">
+  <% if follows.any? %>
+  <% follows.each do |follow| %>
+    <tr>
+      <th><%= attachment_image_tag follow, :profile_image, :fill, 30, 30, format: "jpg", fallback: "noimage.jpg", size: "30x30" %></th>
+      <td><%= follow.name %></td>
+      <td><%= link_to "Show", user_path(follow) %></td>
+    </tr>
+  <% end %>
+  <% end %>
+</table>

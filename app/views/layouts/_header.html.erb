@@ -6,7 +6,7 @@
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand">Bookers2</a>
+      <span class="navbar-brand">Bookers2</span>
     </div>
 
     <div class="collapse navbar-collapse bg-dark" id="navbarHeader">
@@ -39,13 +39,13 @@
             <% end %>
           </li>
           <li>
-            <%= link_to "About", homes_about_path do %>
+            <%= link_to home_about_path do %>
               <span class="glyphicon glyphicon-link"></span>About
             <% end %>
           </li>
           <li>
             <%= link_to new_user_registration_path do %>
-              <span class="glyphicon glyphicon-new-window"></span>Signup
+              <span class="glyphicon glyphicon-new-window"></span>Sign up
             <% end %>
           </li>
           <li>
@@ -56,9 +56,5 @@
         <% end %>
       </ul>
    </nav>
-    <% if flash.any? %>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-    <% end %>
 </header>
 </div>

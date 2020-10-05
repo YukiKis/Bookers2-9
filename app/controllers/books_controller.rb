@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :authenticate_user!, only: [:show, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!
   before_action :setup, only: [:index, :show]
 
   def setup
@@ -8,6 +8,7 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.paginate(page: params[:page])
+    @user = current_user
   end
 
   def show
@@ -20,23 +21,27 @@ class BooksController < ApplicationController
     @book_new = Book.new(book_params)
     @book_new.user_id = current_user.id
     if @book_new.save
-      redirect_to book_new
+      redirect_to @book_new, notice: "successfully made it"
     else
       @books = Book.paginate(page: params[:page])
+      @user = current_user
       render "index"
     end
   end
 
   def edit
     @book = Book.find(params[:id])
+    if @book.user != current_user
+      redirect_to books_path
+    end
   end
 
   def update
-    book = Book.find(params[:id])
-    if book.update(book_params)
-      redirect_to book_path book
+    @book = Book.find(params[:id])
+    if @book.update(book_params)
+      redirect_to @book, notice: "successfully made it"
     else
-      render :edit
+      render "edit"
     end
   end
 
