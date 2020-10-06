@@ -53,8 +53,45 @@ class BooksController < ApplicationController
     end
   end
 
+  def search
+    keyword = search_params[:keyword]
+    user_book = search_params[:user_book]
+    how = search_params[:how]
+    if keyword
+      case user_book
+      when "1"
+        case how
+        when "1"
+          @books = Book.joins(:user).where("users.name LIKE ?", "#{keyword}")
+        when "2"
+          @books = Book.joins(:user).where("users.name LIKE ?", "#{keyword}%")
+        when "3"
+          @books = Book.joins(:user).where("users.name LIKE ?", "%#{keyword}")
+        when "4"
+          @books = Book.joins(:user).where("users.name LIKE ?", "%#{keyword}%")
+        end
+
+      when "2"
+        case how
+        when "1"
+          @books = Book.where("title LIKE ?", "#{keyword}")
+        when "2"
+          @books = Book.where("title LIKE ?", "#{keyword}%")
+        when "3"
+          @books = Book.where("title LIKE ?", "%#{keyword}")
+        when "4"
+          @books = Book.where("title LIKE ?", "%#{keyword}%")
+        end
+      end
+    end
+  end
+
   private
     def book_params
       params.require(:book).permit(:title, :body)
+    end
+
+    def search_params
+      params.require(:search).permit(:keyword, :user_book, :how)
     end
 end

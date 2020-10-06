@@ -1,0 +1,6 @@
+<%= form_with scope: :search, url: books_search_path, method: :get, local: true do |f| %>
+  <%= f.text_field :keyword %>
+  <%= f.select :user_book, options_for_select({ "user": 1, "book": 2 }) %>
+  <%= f.select :how, options_for_select({ "完全一致": 1, "前方一致": 2, "後方一致": 3, "部分一致": 4 }) %>
+  <%= f.submit "SEARCH"%>
+<% end %>

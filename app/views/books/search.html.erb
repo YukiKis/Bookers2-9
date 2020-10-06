@@ -1,0 +1,25 @@
+<%= render "books/search" %>
+
+<h3>RESULT OF SEARCH</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @books.any? %>
+      <% @books.each do |book| %>
+        <th>
+          <%= link_to book.user do %>
+            <%= attachment_image_tag book.user, :profile_image, :fill, 30, 30, format: "jpg", fallback: "noimage.jpg", size: "30x30" %><br><%= book.user.name %>
+          <%  end %>
+        </th>
+        <td><%= book.title %></td>
+        <td><%= link_to "Show", book %></td>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

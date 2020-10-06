@@ -16,4 +16,10 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get search result" do
+    get books_path
+    get books_search_path, params: { keyword: "yuna", user_book: "1", how: "1" }
+    assert_template "books/search"
+    assert_select "td", count: 1
+  end
 end
