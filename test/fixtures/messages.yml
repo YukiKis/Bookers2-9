@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  follower: one
+  followed: one
+  message: MyText
+
+two:
+  follower: two
+  followed: two
+  message: MyText

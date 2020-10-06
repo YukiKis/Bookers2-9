@@ -1,0 +1,12 @@
+  <% messages.each do |message| %>
+    <tr>
+      <th><%= attachment_image_tag message.follower, :profile_image, :fill, 30, 30, format: "jpg", fallback: "noimage.jpg", size: "30x30" %><br><%= message.follower.name %></th>
+      <td><%= message.message %></td>
+      <td><%= message.created_at %></td>
+      <td>
+        <% if message.follower == current_user %>
+          <%= link_to "Destroy", user_message_path(user_id: @user.id, id: message.id), method: :delete, class: "btn btn-danger", remote: true, data: { turbolinks: false } %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>

@@ -6,6 +6,7 @@ class FavoritesController < ApplicationController
       favorite.book_id = @book.id
       favorite.save
     end
+    @book.reload
   end
 
   def destroy
@@ -13,5 +14,6 @@ class FavoritesController < ApplicationController
     if favorite = Favorite.find_by(user_id: current_user.id, book_id: @book.id)
       favorite.destroy
     end
+    @book.reload
   end
 end

@@ -1,0 +1,10 @@
+<h3>Messages with <%= @user.name %></h3>
+
+<table class="table" id="message-table">
+  <%= render "messages/message", messages: @messages %>
+</table>
+
+<%= form_with model: current_user.messages.build, url: user_messages_path(@user), remote: true, data: { turbolinks: false } do |f| %>
+  <%= f.text_area :message, id: "message-form" %>
+  <%= f.submit "Send Message", class: "btn btn-info" %>
+<% end %>

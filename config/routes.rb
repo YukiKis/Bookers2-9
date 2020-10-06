@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     member do
       get :followings, :followers
     end
+    resources :messages, only: [:create, :destroy, :index]
   end
   get "books/search"
   resources :books do
