@@ -1,0 +1,15 @@
+
+    <% if comment_new.errors.any? %>
+      <div class="error-explanation">
+        <h3><%= pluralize(comment.errors.count, "error") %> prohibited from being saved</h3>
+        <ul>
+          <% comment_new.errors.full_messages.each do |m| %>
+            <li><%= m %></li>
+          <% end %>
+      </div>
+    <% end %>
+
+    <%= form_with model:([book, comment_new]), remote: true do |f| %>
+      <%= f.text_area :content, class: "form-control comment-new" %>
+      <%= f.submit "POST COMMENT", class: "btn"%>
+    <% end %>
